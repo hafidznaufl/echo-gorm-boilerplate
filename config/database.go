@@ -33,7 +33,7 @@ func ConnectDB() {
     var errDB error
     DB, errDB = gorm.Open(mysql.Open(dsn), &gorm.Config{})
     if errDB != nil {
-        panic("failed to connect database")
+        panic("Failed to Connect Database")
     }
 
     DB.AutoMigrate(&model.User{})

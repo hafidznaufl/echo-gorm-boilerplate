@@ -21,6 +21,8 @@ func SuccessResponse(message string, data ...interface{}) TSuccessResponse {
 		responseData = nil
 	}
 
+	responseData = data
+
 	return TSuccessResponse{
 		Meta: TResponseMeta{
 			Success: true,
