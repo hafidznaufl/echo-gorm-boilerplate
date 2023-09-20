@@ -88,3 +88,17 @@ import "gorm.io/driver/sqlite"
 
 db, err := gorm.Open(sqlite.Open("my.db"), &gorm.Config{})
 ```
+
+## Contributors 
+
+<div style="display: flex; align-items: center;">
+   <a href="https://github.com/hafidznaufl" style="display: flex; align-items: center; flex-direction: row;">
+    <img src="https://avatars.githubusercontent.com/hafidznaufl?s=50" alt="Avatar Hafidz Naufal" width="50" height="50" style="border-radius: 20px; margin-right: 10px;">
+   </a>
+</div>
+
+[Hafidz Naufal](https://github.com/hafidznaufl) - Kontributor utama proyek ini.
+
+
+
+
