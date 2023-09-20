@@ -16,12 +16,12 @@ Dengan menggunakan boilerplate ini, Anda dapat memulai proyek Go Anda dengan cep
 
 - Clone a Repository
 ```bash
-$ git clone https://github.com/hafidznaufl/echo-gorm-boilerplate.git && cd echo-gorm-boilerplate
+git clone https://github.com/hafidznaufl/echo-gorm-boilerplate.git && cd echo-gorm-boilerplate
 ```
 
 - Get & Install All Dependencies
 ```bash
-$ go mod tidy
+go mod tidy
 ```
 ## File Environment `.env.example`
 
@@ -42,7 +42,7 @@ Berikut adalah daftar variabel lingkungan yang diperlukan dalam file `.env`:
 - Duplikat file `.env.example` sebagai `.env` dan membuatnya secara otomatis apabila belum tersedia
 
    ```bash
-   $ cp -n .env.example .env
+   cp -n .env.example .env
    ```
 - Isi nilai variabel lingkungan pada `.env` dengan lingkungan yg anda miliki
 
