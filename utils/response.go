@@ -14,25 +14,26 @@ type TErrorResponse struct {
 	Meta TResponseMeta `json:"meta"`
 }
 
-func SuccessResponse(message string, data ...interface{}) TSuccessResponse {
-	var responseData interface{}
-
-	if len(data) == 0 {
-		responseData = nil
-	}
-
-	responseData = data
-
-	return TSuccessResponse{
-		Meta: TResponseMeta{
-			Success: true,
-			Message: message,
-		},
-		Results: responseData,
+func SuccessResponse(message string, data interface{}) interface{} {
+	if data == nil {
+		return TErrorResponse{
+			Meta: TResponseMeta{
+				Success: true,
+				Message: message,
+			},
+		}
+	} else {
+		return TSuccessResponse{
+			Meta: TResponseMeta{
+				Success: true,
+				Message: message,
+			},
+			Results: data,
+		}
 	}
 }
 
-func ErrorResponse(message string) TErrorResponse {
+func ErrorResponse(message string) interface{} {
 	return TErrorResponse{
 		Meta: TResponseMeta{
 			Success: false,

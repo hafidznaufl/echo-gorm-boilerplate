@@ -19,6 +19,10 @@ func Init() *echo.Echo {
 	})
 
 	e.GET("/users", controller.Index)
+	e.GET("/users/:id", controller.Show)
+	e.POST("/users", controller.Store)
+	e.PUT("/users/:id", controller.Update)
+	e.DELETE("/users/:id", controller.Delete)
 
 	return e
 
