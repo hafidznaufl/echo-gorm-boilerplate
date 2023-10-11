@@ -3,7 +3,10 @@ package controller
 import (
 	"app/config"
 	"app/model"
+	"app/model/web"
 	"app/utils"
+	"app/utils/req"
+	"app/utils/res"
 	"net/http"
 	"strconv"
 
@@ -22,7 +25,9 @@ func Index(c echo.Context) error {
 		return c.JSON(http.StatusNotFound, utils.ErrorResponse("Empty data"))
 	}
 
-	return c.JSON(http.StatusOK, utils.SuccessResponse("User data successfully retrieved", users))
+	response := res.ConvertIndex(users)
+
+	return c.JSON(http.StatusOK, utils.SuccessResponse("User data successfully retrieved", response))
 }
 
 func Show(c echo.Context) error {
@@ -32,27 +37,32 @@ func Show(c echo.Context) error {
 	}
 
 	var user model.User
-	result := config.DB.First(&user, id)
-	if result.Error != nil {
+
+	if err := config.DB.First(&user, id).Error; err != nil {
 		return c.JSON(http.StatusInternalServerError, utils.ErrorResponse("Failed to retrieve user"))
 	}
 
-	return c.JSON(http.StatusOK, utils.SuccessResponse("User data successfully retrieved", user))
+	response := res.ConvertGeneral(&user)
+
+	return c.JSON(http.StatusOK, utils.SuccessResponse("User data successfully retrieved", response))
 }
 
-
 func Store(c echo.Context) error {
-	var user model.User
+	var user web.UserRequest
 
 	if err := c.Bind(&user); err != nil {
 		return c.JSON(http.StatusBadRequest, utils.ErrorResponse("Invalid request body"))
 	}
 
-	if err := config.DB.Create(&user).Error; err != nil {
+	userDb := req.PassBody(user)
+
+	if err := config.DB.Create(&userDb).Error; err != nil {
 		return c.JSON(http.StatusInternalServerError, utils.ErrorResponse("Failed to store user data"))
 	}
 
-	return c.JSON(http.StatusCreated, utils.SuccessResponse("Success Created Data", user))
+	response := res.ConvertGeneral(userDb)
+
+	return c.JSON(http.StatusCreated, utils.SuccessResponse("Success Created Data", response))
 }
 
 func Update(c echo.Context) error {
@@ -73,10 +83,11 @@ func Update(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, utils.ErrorResponse("Failed to retrieve user"))
 	}
 
-	// Memperbarui data pengguna dengan data yang baru
 	config.DB.Model(&existingUser).Updates(updatedUser)
 
-	return c.JSON(http.StatusOK, utils.SuccessResponse("User data successfully updated", existingUser))
+	response := res.ConvertGeneral(&existingUser)
+
+	return c.JSON(http.StatusOK, utils.SuccessResponse("User data successfully updated", response))
 }
 
 func Delete(c echo.Context) error {
@@ -91,10 +102,7 @@ func Delete(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, utils.ErrorResponse("Failed to retrieve user"))
 	}
 
-	// Menghapus data pengguna dari database
 	config.DB.Delete(&existingUser)
 
 	return c.JSON(http.StatusOK, utils.SuccessResponse("User data successfully deleted", nil))
 }
-
-
