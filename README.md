@@ -12,7 +12,7 @@ Projek boilerplate yang saya miliki adalah kerangka awal untuk mengembangkan apl
 
 Dengan menggunakan boilerplate ini, Anda dapat memulai proyek Go Anda dengan cepat, mengintegrasikan basis data dengan mudah menggunakan GORM, dan menjalankan server Anda dengan dukungan hot reload untuk pengembangan yang lebih efisien. Ini adalah dasar yang kuat untuk membangun berbagai jenis aplikasi web dan layanan RESTful dengan Go.
 
-## Installation
+### Installation
 
 - Clone a Repository
 ```bash
@@ -23,7 +23,7 @@ git clone https://github.com/hafidznaufl/echo-gorm-boilerplate.git && cd echo-go
 ```bash
 go mod tidy
 ```
-## File Environment `.env.example`
+### File Environment `.env.example`
 
 File `.env.example` adalah file contoh konfigurasi yang digunakan dalam proyek ini. File ini berisi daftar variabel lingkungan yang harus diatur dalam file `.env` yang sesungguhnya untuk menjalankan proyek dengan benar. Silakan salin file ini sebagai referensi untuk mengatur variabel lingkungan yang sesuai.
 
@@ -46,12 +46,21 @@ Berikut adalah daftar variabel lingkungan yang diperlukan dalam file `.env`:
    ```
 - Isi nilai variabel lingkungan pada `.env` dengan lingkungan yg anda miliki
 
-## Run App
+### Install Air
+
+With go 1.18 or higher:
+
+```bash
+go install github.com/cosmtrek/air@latest
+```
+
+### Run App with Air
+
 ```bash
 air
 ```
 
-## List Documentation
+### List Documentation
 
 Dalam proyek ini, kami menggunakan beberapa teknologi kunci untuk membangun layanan web yang kuat dan efisien. Berikut adalah daftar link ke dokumentasi resmi dan repository GitHub untuk masing-masing teknologi tersebut:
 
@@ -72,7 +81,7 @@ Dalam proyek ini, kami menggunakan beberapa teknologi kunci untuk membangun laya
 
 Silakan klik tautan-tautan di atas untuk mengakses dokumentasi resmi dan repository GitHub dari masing-masing teknologi. Dokumentasi ini akan memberikan informasi lebih lanjut, petunjuk penggunaan, dan referensi yang dibutuhkan untuk bekerja dengan teknologi-teknologi tersebut dalam proyek Anda.
 
-## Note
+### Note
 
 Dalam proyek ini, kami menggunakan [GORM](https://gorm.io/) sebagai ORM (Object-Relational Mapping) untuk berinteraksi dengan database. GORM sangat kuat dan fleksibel, dan mendukung berbagai jenis database.
 
@@ -96,9 +105,3 @@ db, err := gorm.Open(sqlite.Open("my.db"), &gorm.Config{})
     <img src="https://avatars.githubusercontent.com/hafidznaufl?s=50" alt="Avatar Hafidz Naufal" width="50" height="50" style="border-radius: 20px; margin-right: 10px;">
    </a>
 </div>
-
-[Hafidz Naufal](https://github.com/hafidznaufl) - Kontributor utama proyek ini.
-
-
-
-
