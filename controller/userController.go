@@ -86,14 +86,11 @@ func Login(c echo.Context) error {
 		return c.JSON(http.StatusUnauthorized, utils.ErrorResponse("Invalid login credentials"))
 	}
 
+	response := res.ConvertLogin(user)
+
 	token := middleware.CreateToken(int(user.ID), user.Name)
 
-	// Buat respons dengan data yang diminta
-	response := web.UserLoginResponse{
-		Email:    user.Email,
-		Password: loginRequest.Password,
-		Token:    token,
-	}
+	response.Token = token
 
 	return c.JSON(http.StatusOK, utils.SuccessResponse("Login successful", response))
 }

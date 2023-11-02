@@ -20,6 +20,13 @@ func ConvertIndex(users []model.User) []web.UserReponse {
 	return results
 }
 
+func ConvertLogin(user model.User) web.UserLoginResponse {
+	return web.UserLoginResponse{
+		Email: user.Email,
+		Password: user.Password,
+	}
+}
+
 func ConvertGeneral(user *model.User) web.UserReponse {
 	return web.UserReponse{
 		Id:       int(user.ID),
