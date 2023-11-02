@@ -22,14 +22,14 @@ func SuccessResponse(message string, data interface{}) interface{} {
 				Message: message,
 			},
 		}
-	} else {
-		return TSuccessResponse{
-			Meta: TResponseMeta{
-				Success: true,
-				Message: message,
-			},
-			Results: data,
-		}
+	}
+	
+	return TSuccessResponse{
+		Meta: TResponseMeta{
+			Success: true,
+			Message: message,
+		},
+		Results: data,
 	}
 }
 
