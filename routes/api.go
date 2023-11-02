@@ -18,9 +18,9 @@ func Init() *echo.Echo {
 		return c.String(http.StatusOK, "Welcome to RESTful API Services")
 	})
 
-	e.GET("/users", controller.Index)
-	e.GET("/users/:id", controller.Show)
-	e.POST("/users/register", controller.Store)
+	e.GET("/users", controller.GetAllUsers)
+	e.GET("/users/:id", controller.GetUserById)
+	e.POST("/users/register", controller.Register)
 	e.POST("/users/login", controller.Login)
 	e.PUT("/users/:id", controller.Update)
 	e.DELETE("/users/:id", controller.Delete)

@@ -14,7 +14,7 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-func Index(c echo.Context) error {
+func GetAllUsers(c echo.Context) error {
 	var users []model.User
 
 	err := config.DB.Find(&users).Error
@@ -31,7 +31,7 @@ func Index(c echo.Context) error {
 	return c.JSON(http.StatusOK, utils.SuccessResponse("User data successfully retrieved", response))
 }
 
-func Show(c echo.Context) error {
+func GetUserById(c echo.Context) error {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, utils.ErrorResponse("Invalid ID"))
@@ -48,7 +48,7 @@ func Show(c echo.Context) error {
 	return c.JSON(http.StatusOK, utils.SuccessResponse("User data successfully retrieved", response))
 }
 
-func Store(c echo.Context) error {
+func Register(c echo.Context) error {
 	var user web.UserRequest
 
 	if err := c.Bind(&user); err != nil {
